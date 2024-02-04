@@ -53,6 +53,17 @@ export const ListGrid = styled.div`
   grid-gap: 8px;
 `;
 
+export const ColumnHeader = styled.div`
+  text-transform: uppercase;
+  margin-bottom: 20px;
+`;
+
+export const DroppableStyles = styled.div`
+  padding: 10px;
+  border-radius: 6px;
+  background: #d4d4d4;
+`;
+
 
 export default {
   Avatar,
@@ -62,5 +73,7 @@ export default {
   CardFooter,
   DragItem,
   DragDropContextContainer,
-  ListGrid
+  ListGrid,
+  ColumnHeader,
+  DroppableStyles
 }

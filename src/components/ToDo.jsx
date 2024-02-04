@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ShowListTaskList from "./ShowListTaskList";
+// import ShowListTaskList from "./ShowListTaskList";
 import ShowForm from "./ShowForm";
 import { DragDropContextContainer, ListGrid } from "./StyledComponents";
 import { DragDropContext, Draggable } from "react-beautiful-dnd";
@@ -19,27 +19,7 @@ const addToList = (list, index, element) => {
 
 const lists = ["todo", "inProgress", "done"];
 
-const getItems = (count, prefix) =>
-    Array.from({ length: count }, (v, k) => k).map((k) => {
-        const randomId = Math.floor(Math.random() * 1000);
-        return {
-            id: `item-${randomId}`,
-            prefix,
-            content: `item ${randomId}`,
-            startDate: "",
-            endDate: "",
-        };
-    });
-
-const generateLists = () =>
-    lists.reduce(
-        (acc, listKey) => ({ ...acc, [listKey]: getItems(10, listKey) }),
-        {}
-    );
-
 const ToDo = () => {
-
-    const [elements, setElements] = React.useState(generateLists());
 
     const [showNew, setshowNew] = useState(true);
     const [showForm, setshowForm] = useState(false);
@@ -60,36 +40,17 @@ const ToDo = () => {
 
     const [items, setitems] = useState(
         {
-            "todo": [
-            ],
+            "todo": [],
             "inProgress": [],
             "done": []
         }
     );
-    // {
-    //     id: "001",
-    //     name: " Task",
-    //     desc: "Default Description",
-    //     status: false,
-    //     category: "Added"
-    // },
-    // {
-    //     id: "002",
-    //     name: "Task 2",
-    //     desc: "Default Description 2",
-    //     status: false,
-    //     category: "Added"
-    // },
-    // ]);
 
     useEffect(() => {
         const localData = localStorage.getItem("items");
         if (localData) {
             setitems(JSON.parse(localData));
         }
-        setElements(generateLists());
-        debugger
-
     }, []);
 
     //  Start code for HANDLING INPUT FIELDS

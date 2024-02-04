@@ -1,14 +1,9 @@
 import React from "react";
 import { CardHeader, Author, CardFooter, DragItem, CardBody } from './StyledComponents';
-import { Draggable } from "react-beautiful-dnd";
 
 const ListItem = ({ item, provided, snapshot, onStartTask, onCompleteTodo, handleDelete, handleEdit, showDelete, index }) => {
 
-    console.log("item.prefix", item.prefix);
     return (
-
-        // <Draggable key={item.id} draggableId={item.id} index={index}>
-        //     {(provided, snapshot) => {
 
         <DragItem
             ref={provided.innerRef}
@@ -16,7 +11,6 @@ const ListItem = ({ item, provided, snapshot, onStartTask, onCompleteTodo, handl
             {...provided.draggableProps}
             {...provided.dragHandleProps}
         >
-            {/* <CardHeader>{randomHeader}</CardHeader> */}
             <CardHeader>{item.name}</CardHeader>
             {/* <span>{item.id}</span> */}
             <CardBody>
@@ -75,8 +69,6 @@ const ListItem = ({ item, provided, snapshot, onStartTask, onCompleteTodo, handl
             </CardFooter>
         </DragItem>
 
-        //     }}
-        // </Draggable>
     );
 };
 
