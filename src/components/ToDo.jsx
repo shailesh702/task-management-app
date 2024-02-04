@@ -54,7 +54,6 @@ const ToDo = () => {
 
     //   SUBMITTING FORM
     const handleSubmit = (e) => {
-        // setshowList(true);
         setshowNew(true);
         let allData;
         e.preventDefault();
@@ -72,12 +71,10 @@ const ToDo = () => {
                 endDate: "",
                 prefix: "todo"
             };
-            // setitems([allInputData, ...items['todo']]);
             setitems({ ...items, todo: [allInputData, ...items['todo']] });
             setinputData("");
             setinputDesc("");
             setshowForm(false);
-            // allData = [allInputData, ...items['todo']];
             allData = { ...items, todo: [allInputData, ...items['todo']] };
             localStorage.setItem("items", JSON.stringify(allData));
         }
@@ -96,7 +93,6 @@ const ToDo = () => {
     const handleAdd = () => {
         setshowNew(false);
         setshowForm(true);
-        // setshowList(true);
     }
 
     const onDragEnd = (result) => {
