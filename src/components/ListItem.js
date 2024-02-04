@@ -54,16 +54,13 @@ const ListItem = ({ item, provided, snapshot, onStartTask, onCompleteTodo, handl
                         Edit
                     </button> */}
 
-                    {/* {showDelete ? (
-                                <button
-                                    className="btn btn-danger mx-2"
-                                    onClick={() => handleDelete(item.id)}
-                                >
-                                    Delete
-                                </button>
-                            ) : (
-                                ""
-                            )} */}
+
+                    <button
+                        className="btn btn-danger mx-2"
+                        onClick={() => handleDelete(item.id, item.prefix)}
+                    >
+                        Delete
+                    </button>
 
                 </Author>
             </CardFooter>

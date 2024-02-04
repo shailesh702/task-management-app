@@ -112,20 +112,17 @@ const ToDo = () => {
     };
 
     //   DELETE
-    const handleDelete = (index) => {
-        debugger
-        let datafromStorage = JSON.parse(localStorage.getItem("items"));
-        const updatedItems = items.filter((elem) => {
+    const handleDelete = (index, keyElement) => {
+        const updatedItems = items[keyElement].filter((elem) => {
             return index !== elem.id;
         });
         setdeleteMessage(true);
-
-        setitems(updatedItems);
+        setitems({ ...items, [keyElement]: updatedItems });
         setTimeout(() => {
             setdeleteMessage(false);
         }, 2000);
         // setdeleteMessagesuccess(false);
-        localStorage.setItem("items", JSON.stringify(updatedItems));
+        localStorage.setItem("items", JSON.stringify({ ...items, [keyElement]: updatedItems }));
     };
 
     //   EDIT
@@ -199,7 +196,6 @@ const ToDo = () => {
     // };
 
     const onDragEnd = (result) => {
-        debugger
         if (!result.destination) {
             return;
         }
@@ -290,6 +286,7 @@ const ToDo = () => {
                                     elements={items[listKey]}
                                     key={listKey}
                                     prefix={listKey}
+                                    handleDelete={handleDelete}
                                 />
                             ))}
                         </ListGrid>
