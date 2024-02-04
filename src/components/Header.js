@@ -6,7 +6,7 @@ function Header() {
             <nav className="nav">
                 {/* <div className="nav-left">
                     <a className="brand" href="#">
-                        Task Manager
+                        Task Manager App
                     </a>
                 </div> */}
             </nav>

@@ -12,7 +12,6 @@ const ListItem = ({ item, provided, snapshot, onStartTask, onCompleteTodo, handl
             {...provided.dragHandleProps}
         >
             <CardHeader>{item.name}</CardHeader>
-            {/* <span>{item.id}</span> */}
             <CardBody>
                 <span>{item.desc}</span>
             </CardBody>
@@ -27,34 +26,6 @@ const ListItem = ({ item, provided, snapshot, onStartTask, onCompleteTodo, handl
                 </div>
 
                 <Author>
-                    {/* {item.category === "Added" && (
-                                <button
-                                    className="button btn icon-only border"
-                                    onClick={() => onStartTask(item.id)}
-                                >
-                                    Start
-                                </button>
-                            )}
-                            {item.category === "Started" && (
-                                <>
-
-                                    <button
-                                        className="button btn icon-only border"
-                                        onClick={() => onCompleteTodo(item.id)}
-                                    >
-                                        Complete
-                                    </button>
-                                </>
-                            )} */}
-
-                    {/* <button
-                        className="btn btn-primary mx-2"
-                        onClick={() => handleEdit(item.id)}
-                    >
-                        Edit
-                    </button> */}
-
-
                     <button
                         className="btn btn-danger mx-2"
                         onClick={() => handleDelete(item.id, item.prefix)}

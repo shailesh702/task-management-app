@@ -34,13 +34,11 @@ const ShowForm = ({ showForm, toggleSubmit, handleInput, handleInputdesc, handle
                                 onChange={handleInputdesc}
                                 value={inputDesc}
                             />
-                            {/* <div className="text-center"> */}
                             {toggleSubmit ? (
                                 <button className="btn btn-primary my-2">Save</button>
                             ) : (
                                 <button className="btn btn-primary my-2">Update</button>
                             )}
-                            {/* </div> */}
                         </form>
                     </div>
                 </div>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-// import ShowListTaskList from "./ShowListTaskList";
+
 import ShowForm from "./ShowForm";
 import { DragDropContextContainer, ListGrid } from "./StyledComponents";
-import { DragDropContext, Draggable } from "react-beautiful-dnd";
+import { DragDropContext } from "react-beautiful-dnd";
 import DraggableElement from "./DraggableElement";
 
 const removeFromList = (list, index) => {
@@ -23,17 +23,7 @@ const ToDo = () => {
 
     const [showNew, setshowNew] = useState(true);
     const [showForm, setshowForm] = useState(false);
-    const [showDelete, setshowDelete] = useState(true);
     const [toggleSubmit, settoggleSubmit] = useState(true);
-    const [isEditItem, setisEditItem] = useState(null);
-    const [showList, setshowList] = useState(true);
-
-    //   const [addMessage, setaddMessage] = useState('')
-    const [editMessage] = useState(false);
-    const [deleteMessage, setdeleteMessage] = useState(false);
-    // const [setdeleteMessagesuccess] = useState(false);
-    const [startMessage, setstartMessage] = useState(false);
-    const [completeMessage, setcompleteMessage] = useState(false)
 
     const [inputData, setinputData] = useState("");
     const [inputDesc, setinputDesc] = useState("");
@@ -64,33 +54,15 @@ const ToDo = () => {
 
     //   SUBMITTING FORM
     const handleSubmit = (e) => {
-        setshowList(true);
+        // setshowList(true);
         setshowNew(true);
         let allData;
         e.preventDefault();
         if (!inputData || !inputDesc) {
             setshowNew(false);
             alert("Fill data");
-            // showList(false);
-            // setshowForm(false);
-
-        } else if (inputData && !toggleSubmit) {
-
-            setitems(
-                items.map((elem) => {
-                    if (elem.id === isEditItem) {
-                        return { ...elem, name: inputData, desc: inputDesc };
-                    }
-                    return { ...elem, category: "Added" };
-                })
-            );
-
-            setinputData("");
-            setinputDesc("");
-            settoggleSubmit(true);
-            setshowForm(false);
-            setshowDelete(true);
-        } else {
+        }
+        else {
             const allInputData = {
                 id: new Date().getTime().toString(),
                 name: inputData,
@@ -116,84 +88,16 @@ const ToDo = () => {
         const updatedItems = items[keyElement].filter((elem) => {
             return index !== elem.id;
         });
-        setdeleteMessage(true);
         setitems({ ...items, [keyElement]: updatedItems });
-        setTimeout(() => {
-            setdeleteMessage(false);
-        }, 2000);
-        // setdeleteMessagesuccess(false);
         localStorage.setItem("items", JSON.stringify({ ...items, [keyElement]: updatedItems }));
     };
-
-    //   EDIT
-    const handleEdit = (id) => {
-        setshowList(false);
-        setshowDelete(false);
-        setshowNew(false);
-        setshowForm(true);
-
-        settoggleSubmit(false);
-        let newEditItem = items.find((elem) => {
-            return elem.id === id;
-        });
-        setinputData(newEditItem.name);
-        setinputDesc(newEditItem.desc);
-        // setshowDelete(true)
-
-        setisEditItem(id);
-        console.log(newEditItem);
-    };
-
-    //   START TASK
-    const onStartTask = (id) => {
-        const updatedItems = items.map((elem) => {
-            if (id === elem.id) {
-                return { ...elem, status: !elem.status, category: "Started", startDate: new Date().toLocaleString(), endDate: "", prefix: "inProgress" };
-            }
-            return elem;
-        });
-        setitems(updatedItems);
-        setstartMessage(true);
-        localStorage.setItem("items", JSON.stringify(updatedItems));
-        setTimeout(() => {
-            setstartMessage(false);
-        }, 2000);
-    };
-
-
-    //   COMPLETE
-    const onCompleteTodo = (id) => {
-        const updatedItems = items.map((elem) => {
-            if (id === elem.id) {
-                return { ...elem, status: !elem.status, category: "Completed", endDate: new Date().toLocaleString(), prefix: "done" };
-            }
-            return elem;
-        });
-        setitems(updatedItems);
-        setcompleteMessage(true);
-        localStorage.setItem("items", JSON.stringify(updatedItems));
-        setTimeout(() => {
-            setcompleteMessage(false);
-        }, 2000);
-    };
-
 
     // ADD NEW TASK
     const handleAdd = () => {
         setshowNew(false);
         setshowForm(true);
-        setshowList(true);
+        // setshowList(true);
     }
-
-    // const _onDragEnd = (result) => {
-    //     if (!result.destination) {
-    //         return;
-    //     }
-    //     const newItems = Array.from(items);
-    //     const [removed] = newItems.splice(result.source.index, 1);
-    //     newItems.splice(result.destination.index, 0, removed);
-    //     setitems(newItems);
-    // };
 
     const onDragEnd = (result) => {
         if (!result.destination) {
@@ -222,7 +126,6 @@ const ToDo = () => {
         setitems(listCopy);
         localStorage.setItem("items", JSON.stringify(listCopy));
     };
-
 
     return (
         <>
@@ -258,25 +161,6 @@ const ToDo = () => {
                 ("")
 
             }
-            {/* {showList ? (
-                <ShowListTaskList
-                    deleteMessage={deleteMessage}
-                    editMessage={editMessage}
-                    items={items}
-                    showDelete={showDelete}
-                    handleEdit={handleEdit}
-                    handleDelete={handleDelete}
-                    onCompleteTodo={onCompleteTodo}
-                    completeMessage={completeMessage}
-                    onStartTask={onStartTask}
-                    startMessage={startMessage}
-                    onDragEnd={_onDragEnd}
-                />
-            ) : (
-                ""
-            )} */}
-
-
             {items['done'].length === 0 && items['inProgress'].length === 0 && items['todo'].length === 0 ? <p>Your task list is empty. Click on New Task button to add new task.</p> :
                 <DragDropContextContainer>
                     <DragDropContext onDragEnd={onDragEnd}>

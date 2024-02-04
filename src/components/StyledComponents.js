@@ -1,12 +1,6 @@
 
 import styled, { css } from "styled-components";
 
-export const Avatar = styled.img`
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-`;
-
 export const CardHeader = styled.div`
   font-weight: 500;
   text-align: start;
@@ -64,9 +58,7 @@ export const DroppableStyles = styled.div`
   background: #d4d4d4;
 `;
 
-
 export default {
-  Avatar,
   CardHeader,
   CardBody,
   Author,

@@ -16,10 +16,7 @@ const DraggableElement = ({ prefix, elements, handleDelete }) => (
                                     provided={provided}
                                     snapshot={snapshot}
                                     item={item}
-                                    // onStartTask={onStartTask}
-                                    // handleEdit={handleEdit}
                                     handleDelete={handleDelete}
-                                    // showDelete={showDelete}
                                     index={index}
                                 />
                             )}
